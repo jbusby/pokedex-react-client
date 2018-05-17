@@ -5,8 +5,33 @@ import Header from './Header.js';
 import Table from './Table.js';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      pokemons: []
+    };
+  }
+
+  getApiUrl() {
+    return "http://localhost:3001/api/v1"
+  }
+
+  fetchPokemons() {
+    const endpoint = this.getApiUrl() + "/pokemon?limit=10&offset=50"; 
+    fetch(endpoint)
+      .then(resp => resp.json())
+      .then(resp => {
+        this.setState({pokemons: resp});
+      }
+    );
+  }
+
+  componentDidMount() {
+    this.fetchPokemons()
+  }
+
   render() {
-    const pokemons = [{"id":1,"identifier":"bulbasaur","species_id":1,"height":7,"weight":69,"base_experience":64,"order":1,"is_default":true,"created_at":"2018-05-10T21:51:21.444Z","updated_at":"2018-05-10T21:51:21.444Z"},{"id":2,"identifier":"ivysaur","species_id":2,"height":10,"weight":130,"base_experience":142,"order":2,"is_default":true,"created_at":"2018-05-10T21:51:21.450Z","updated_at":"2018-05-10T21:51:21.450Z"}];
+    const { pokemons } = this.state;
 
     return (
       <div className="App">

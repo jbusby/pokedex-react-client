@@ -3,17 +3,21 @@ import Row from './Row.js';
 
 class Table extends Component {
   render() {
-    const {pokemons} = this.props;
-    
+    const { pokemons } = this.props;
     return (
       <table>
-        <th>
-          <td>Id</td>
-          <td>Name</td>
-        </th>
-        {pokemons.map((pokemon) => (
-           <Row pokemon={pokemon} /> 
-        ))}
+        <tbody>
+          <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Height</th>
+            <th>Weight</th>
+            <th>Base Experience</th>
+          </tr>
+          {pokemons.map((pokemon) => (
+             <Row key={pokemon.id} pokemon={pokemon} /> 
+          ))}
+        </tbody>
       </table> 
     );
   }
