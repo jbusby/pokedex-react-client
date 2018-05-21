@@ -17,7 +17,7 @@ class App extends Component {
   }
 
   fetchPokemons() {
-    const endpoint = this.getApiUrl() + "/pokemon?limit=10&offset=50"; 
+    const endpoint = this.getApiUrl() + "/pokemon"; 
     fetch(endpoint)
       .then(resp => resp.json())
       .then(resp => {

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import BootstrapTable from 'react-bootstrap-table-next';
+import paginationFactory from 'react-bootstrap-table2-paginator';
+
 
 class Table extends Component {
   render() {
@@ -7,28 +9,38 @@ class Table extends Component {
     const columns = [
       {
         dataField: 'id',
-        text: 'Id'
+        text: 'Id',
+        sort: true
       },
       {
         dataField: 'identifier',
-        text: 'Name'
+        text: 'Name',
+        sort: true
       },
       {
         dataField: 'height',
-        text: 'Height'
+        text: 'Height',
+        sort: true
       },
       {
         dataField: 'weight',
-        text: 'Weight'
+        text: 'Weight',
+        sort: true
       },
       {
         dataField: 'base_experience',
-        text: 'Base Experience'
+        text: 'Base Experience',
+        sort: true
       }
     ];
 
     return (
-      <BootstrapTable keyField='id' columns={ columns } data={ pokemons } />
+      <BootstrapTable
+        keyField='id'
+        columns={ columns }
+        data={ pokemons }
+        pagination={ paginationFactory() }
+      />
     );
   }
 }
