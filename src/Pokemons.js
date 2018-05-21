@@ -2,12 +2,36 @@ import React, { Component } from 'react';
 import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 
+class Pokemons extends Component {
 
-class Table extends Component {
-  
+  constructor(props) {
+    super(props);
+    this.state = {
+      pokemons: []
+    };
+  }
+
+  getApiUrl() {
+    return "http://localhost:3000/api/v1"
+  }
+ 
+  fetchPokemons() {
+    const endpoint = this.getApiUrl() + "/pokemon"; 
+    fetch(endpoint)
+      .then(resp => resp.json())
+      .then(resp => {
+        this.setState({pokemons: resp});
+      }
+    );
+  }
+
+  componentDidMount() {
+    this.fetchPokemons()
+  }
  
   render() {
-    const { pokemons } = this.props;
+    
+    const { pokemons } = this.state;
     const rowEvents = {
       onClick: (e, row, rowIndex) => {
 	console.info(e);
@@ -48,7 +72,7 @@ class Table extends Component {
       <BootstrapTable
         keyField='id'
         columns={ columns }
-        data={ pokemons }
+        data={ this.state.pokemons }
         pagination={ paginationFactory() }
         rowEvents={ rowEvents }
       />
@@ -56,4 +80,4 @@ class Table extends Component {
   }
 }
 
-export default Table;
+export default Pokemons;
