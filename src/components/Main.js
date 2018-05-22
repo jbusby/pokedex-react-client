@@ -3,8 +3,6 @@ import { Switch, Route } from 'react-router-dom';
 import Pokemons from './Pokemons';
 
 class Main extends Component {
-
-
   render() {
     return (
       <main>

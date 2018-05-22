@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import 'whatwg-fetch';
-import './App.css';
+import './css/App.css';
 import Main from './Main.js';
 import Header from './Header.js';
 

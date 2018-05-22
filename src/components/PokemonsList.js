@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 
-class Pokemons extends Component {
+class PokemonsList extends Component {
 
   constructor(props) {
     super(props);
@@ -30,13 +30,10 @@ class Pokemons extends Component {
   }
  
   render() {
-    
-    const { pokemons } = this.state;
     const rowEvents = {
       onClick: (e, row, rowIndex) => {
-	console.info(e);
-        console.info(row);
-        console.info(rowIndex);
+        e.preventDefault()
+	window.location.href = "/pokemons/" + row.id;
       }
     };
     const columns = [
@@ -80,4 +77,4 @@ class Pokemons extends Component {
   }
 }
 
-export default Pokemons;
+export default PokemonsList;
