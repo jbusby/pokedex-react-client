@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { Image } from 'cloudinary-react';
 
 class Pokemon extends Component {
 
@@ -32,9 +33,10 @@ class Pokemon extends Component {
  
   render() {
     const { pokemon } = this.state; 
-    console.info (pokemon);
+    const publicId = "pokemon/" + pokemon.identifier;
     return (
       <div>
+        <Image cloudName="dvqmajsuw" publicId={ publicId }></Image>
         <h1>{ pokemon.identifier }</h1>
         <p><b>Base Experience:</b> { pokemon.base_experience }</p>
         <p><b>Height:</b> { pokemon.height }</p>

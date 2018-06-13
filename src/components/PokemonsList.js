@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
+import { Image, CloudinaryContext, Transformation } from 'cloudinary-react';
 
 class PokemonsList extends Component {
 
@@ -12,7 +13,7 @@ class PokemonsList extends Component {
   }
 
   getApiUrl() {
-    return "http://localhost:3000/api/v1"
+    return "http://localhost:3000/api/v1";
   }
  
   fetchPokemons() {
@@ -25,6 +26,17 @@ class PokemonsList extends Component {
     );
   }
 
+  pokemonImage(row, pokemon) {
+    const publicId = "pokemon/" + pokemon.identifier;
+    return (
+      <CloudinaryContext cloudName="dvqmajsuw">
+        <Image publicId={ publicId }>
+          <Transformation width="100" crop="scale"/>
+        </Image>
+      </CloudinaryContext>
+    );
+  }
+  
   componentDidMount() {
     this.fetchPokemons()
   }
@@ -38,10 +50,9 @@ class PokemonsList extends Component {
     };
     const columns = [
       {
-        dataField: 'id',
-        text: 'Id',
-        sort: true,
-        isKey: true
+        dataField: 'image',
+        text: 'Image',
+        formatter: this.pokemonImage
       },
       {
         dataField: 'identifier',
